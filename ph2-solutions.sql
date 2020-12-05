@@ -43,3 +43,33 @@ GROUP BY last_name;
 FROM actor
 GROUP BY last_name having count(*) > 1;
 
+4c. UPDATE actor
+SET first_name = 'HARPO'
+WHERE first_name = "GROUCHO" and last_name = "WILLIAMS";
+
+4d. UPDATE actor
+SET first_name = 'GROUCHO'
+WHERE first_name = "HARPO" and last_name = "WILLIAMS";
+
+5a. SHOW CREATE TABLE address;
+
+6a. select staff.first_name, staff.last_name, address.address
+from staff
+join address on staff.address_id = address.address_id;
+
+6b. select staff.first_name, staff.last_name, sum(payment.amount) over () as total
+from staff
+join payment on staff.staff_id = payment.staff_id
+group by staff.first_name, staff.last_name;
+
+6c. select film.title, sum(film_actor.actor_id) as num_actors
+from film
+inner join film_actor on film.film_id = film_actor.film_id
+group by film.title;
+
+6d. SELECT title, COUNT(inventory_id) as num_copies
+FROM film f
+INNER JOIN inventory i 
+ON f.film_id = i.film_id
+WHERE title = "Hunchback Impossible";
+
